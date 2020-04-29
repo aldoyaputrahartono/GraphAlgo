@@ -14,17 +14,17 @@ void primMST(vector<pair<int,int> > adj[], int V) {
     // default priority queue dari besar ke kecil
     vector<pair<int,int> > :: iterator x;	// iterator. Cara kerja nya mirip saat pakai variabel int i di loop, tetapi iterator memakai pointer
     int src = 0, mst_wt = 0; 
-    vector<int> key(V, INF); 				// key utk menampung jarak sementara suatu vertex dari source. Set awal infinite. INF ada di line 3
-    vector<int> parent(V, -1); 				// parent utk menampung vertex ke-i dihubungkan dengan siapa. Set awal semua -1
-    vector<bool> inMST(V, false); 			// inMST utk ngecek sdh dilewati atau blm
+    vector<int> key(V, INF); 			// key utk menampung jarak sementara suatu vertex dari source. Set awal infinite. INF ada di line 3
+    vector<int> parent(V, -1); 			// parent utk menampung vertex ke-i dihubungkan dengan siapa. Set awal semua -1
+    vector<bool> inMST(V, false); 		// inMST utk ngecek sdh dilewati atau blm
     key[src] = 0; 
     pq.push(make_pair(key[src], src)); 		// isi di dlm pq adalah pair<key, source>
     while (!pq.empty()){ 
-        int u = pq.top().second; 			// u menampung source
+        int u = pq.top().second; 		// u menampung source
         pq.pop(); 
         inMST[u] = true;
         for (x=adj[u].begin();x!=adj[u].end();++x){ 
-            int v = x->first; 				// v menampung destination
+            int v = x->first; 			// v menampung destination
             int weight = x->second; 
             if (inMST[v] == false && key[v] > weight){ // jika blm dilewati dan jarak ke-v melebihi weight
                 key[v] = weight; 
@@ -35,13 +35,13 @@ void primMST(vector<pair<int,int> > adj[], int V) {
     } 
     for (int i = 1; i < V; ++i){
     	printf("%d - %d\n", parent[i], i); 
-    	mst_wt+=key[i];						// update MST
-	}
+    	mst_wt+=key[i];				// update MST
+    }
     cout<<mst_wt<<endl;
 } 
   
 int main(){ 
-    int V = 9; 					// banyak vertex
+    int V = 9; 				// banyak vertex
     vector<iPair > adj[V]; 		// pakai adjacency list. iPair disini pair<int, int> untuk pair<destination, weight>
     addEdge(adj, 0, 1, 4); 		// input graph. Formatnya addEdge(adj, source, destination, weight)
     addEdge(adj, 0, 7, 8); 
