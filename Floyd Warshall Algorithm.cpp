@@ -41,17 +41,17 @@ int main(){
     \|/         |  
     (1)------->(2)  
             3     */
-    V=4;								// banyak vertex
+    V=4;						// banyak vertex
     for(int i=0;i<V;i++){				// pakai adjacency matrix, semua di set INF, kecuali yang menunjuk ke dirinya sndr bernilai 0
     	for(int j=0;j<V;j++){
     		if(i==j) graph[i][j]=0;
     		else graph[i][j]=INF;
-		}
 	}
-	graph[0][1]=5;						// input weight. graph[i][j]=weight brrt weight utk vertex-i ke vertex-j
-	graph[0][3]=10;
-	graph[1][2]=3;
-	graph[2][3]=1;
+    }
+    graph[0][1]=5;					// input weight. graph[i][j]=weight brrt weight utk vertex-i ke vertex-j
+    graph[0][3]=10;
+    graph[1][2]=3;
+    graph[2][3]=1;
     floydWarshall();					// hitung shortest path
     return 0;  
 }  
